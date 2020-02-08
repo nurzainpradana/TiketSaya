@@ -103,14 +103,14 @@
                 android:layout_marginTop="6dp"
                 android:orientation="vertical"
                 android:layout_marginBottom="16dp">
+
                 <TextView
                     android:id="@+id/photo_spot_ticket"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="4 Photo Spots"
                     android:fontFamily="@font/mregular"
-                    android:textColor="@color/blackPrimary"/>
+                    android:textColor="@color/blackPrimary"
+                    android:textSize="16sp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -135,14 +135,14 @@
                 android:layout_marginTop="6dp"
                 android:orientation="vertical"
                 android:layout_marginBottom="16dp">
+
                 <TextView
                     android:id="@+id/wifi_ticket"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="WiFi Available"
                     android:fontFamily="@font/mregular"
-                    android:textColor="@color/blackPrimary"/>
+                    android:textColor="@color/blackPrimary"
+                    android:textSize="16sp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -169,14 +169,14 @@
                 android:layout_marginTop="6dp"
                 android:orientation="vertical"
                 android:layout_marginBottom="16dp">
+
                 <TextView
                     android:id="@+id/festival_ticket"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="13 Festivals"
                     android:fontFamily="@font/mregular"
-                    android:textColor="@color/blackPrimary"/>
+                    android:textColor="@color/blackPrimary"
+                    android:textSize="16sp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -186,18 +186,16 @@
                     android:textColor="@color/grayPrimary"/>
             </LinearLayout>
         </LinearLayout>
+
         <TextView
             android:id="@+id/short_desc_ticket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/mregular"
-            android:text="The leaning of the Tower of Pisa
-comes into the story in 1173"
-            android:textColor="@color/grayPrimary"
             android:layout_marginTop="4dp"
-            android:textSize="16sp"
+            android:fontFamily="@font/mregular"
             android:lineSpacingExtra="8dp"
-            />
+            android:textColor="@color/grayPrimary"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <Button
