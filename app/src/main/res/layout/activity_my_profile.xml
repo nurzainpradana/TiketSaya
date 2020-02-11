@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="310dp"
         android:background="@drawable/bg_gradient_primary_blue"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view4"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.florent37.shapeofview.shapes.CircleView
-        android:id="@+id/photo_profile"
+        android:id="@+id/frame_photo_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/view4"
@@ -41,8 +41,9 @@
         <ImageView
             android:layout_width="95dp"
             android:layout_height="95dp"
-            android:id="@+id/photo_home_user"
-            android:src="@drawable/zainphoto"/>
+            android:id="@+id/photo_profile"
+            android:src="@drawable/icon_nopic"
+            />
     </com.github.florent37.shapeofview.shapes.CircleView>
 
     <TextView
@@ -52,11 +53,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/mmedium"
-        android:text="Nur Zain Pradana"
         android:textColor="#fff"
         android:textSize="24sp"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/photo_profile"
+        app:layout_constraintTop_toBottomOf="@id/frame_photo_profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_goneMarginTop="32dp"
@@ -68,7 +68,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/mlight"
-        android:text="Hobi Makan dan Tidur"
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="20sp"
