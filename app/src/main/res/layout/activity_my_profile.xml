@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mmedium"
-            android:text="Tempat Favorite"
+            android:text="My Tickets"
             android:textColor="@color/blackPrimary"
             android:textSize="20sp" />
 
@@ -117,113 +117,14 @@
             android:layout_marginBottom="16dp"
             android:background="#ededed" />
 
-        <LinearLayout
-            android:id="@+id/item_my_ticket"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/myticket_place"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:src="@drawable/ic_ticket_buy" />
+        </androidx.recyclerview.widget.RecyclerView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="16dp"
-                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/photo_spot_ticket"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:text="Tukang Ketoprak"
-                    android:textColor="@color/blackPrimary"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mlight"
-                    android:text="Depan Kampus"
-                    android:textColor="@color/grayPrimary"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="11dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:fontFamily="@font/mlight"
-                    android:textColor="@color/bluePrimary"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:src="@drawable/ic_ticket_buy" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="16dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/photo_spot_ticket"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:text="Kasur Tercinta"
-                    android:textColor="@color/blackPrimary"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mlight"
-                    android:text="My Amburadul Room"
-                    android:textColor="@color/grayPrimary"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="11dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginTop="17dp"
-                    android:fontFamily="@font/mlight"
-                    android:text=""
-                    android:textColor="@color/bluePrimary"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 
     <Button
