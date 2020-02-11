@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.florent37.shapeofview.shapes.CircleView
-        android:id="@+id/photo_my_profile"
+        android:id="@+id/photo_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/view4"
@@ -46,7 +46,7 @@
     </com.github.florent37.shapeofview.shapes.CircleView>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/nama_lengkap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -56,14 +56,14 @@
         android:textColor="#fff"
         android:textSize="24sp"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/photo_my_profile"
+        app:layout_constraintTop_toBottomOf="@id/photo_profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_goneMarginTop="32dp"
         />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/bio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -74,7 +74,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/nama_lengkap" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -91,7 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/bio"
         android:layout_marginTop="16dp">
 
         <TextView

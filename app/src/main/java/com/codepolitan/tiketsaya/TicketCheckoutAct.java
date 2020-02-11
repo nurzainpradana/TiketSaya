@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ public class TicketCheckoutAct extends AppCompatActivity {
     Integer value_totalharga = 0;
     Integer value_hargatiket = 0;
     ImageView notice_uang;
+    Integer sisa_balance = 0; // untuk sisa balance setelah checkout
 
     String USERNAME_KEY = "usernamekey";
     String username_key = "";
@@ -44,7 +46,7 @@ public class TicketCheckoutAct extends AppCompatActivity {
 
     LinearLayout btn_back;
 
-    DatabaseReference reference, reference2, reference3;
+    DatabaseReference reference, reference2, reference3, reference4;
 
 
     @Override
@@ -181,6 +183,7 @@ public class TicketCheckoutAct extends AppCompatActivity {
                 reference3.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        reference3.getRef().child("id_ticket").setValue(namawisata.getText().toString() + nomor_transaksi);
                         reference3.getRef().child("nama_wisata").setValue(namawisata.getText().toString());
                         reference3.getRef().child("lokasi").setValue(lokasi.getText().toString());
                         reference3.getRef().child("ketentuan").setValue(ketentuan.getText().toString());
@@ -196,9 +199,25 @@ public class TicketCheckoutAct extends AppCompatActivity {
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
-
-
                 });
+
+                //update data balance kepada users (yang saat ini login)
+                //mengambil data user dari firebase
+                reference4= FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new);
+                reference4.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        sisa_balance = mybalance - value_totalharga;
+                        reference4.getRef().child("user_balance").setValue(sisa_balance);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
 
 
             }

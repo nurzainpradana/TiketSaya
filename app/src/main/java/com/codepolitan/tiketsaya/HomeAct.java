@@ -56,8 +56,8 @@ public class HomeAct extends AppCompatActivity {
         user_balance = findViewById(R.id.user_balance);
 
         //mengambil data berdasarkan user yang sedang login username_key_new
+        Toast.makeText(this, username_key_new, Toast.LENGTH_SHORT).show();
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new);
-
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
