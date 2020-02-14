@@ -120,7 +120,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myticket_place"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="130dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 

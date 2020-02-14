@@ -1,6 +1,7 @@
 package com.codepolitan.tiketsaya;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,19 +28,37 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_myticket, viewGroup, false ));
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        return new MyViewHolder(LayoutInflater
+                .from(context).inflate(R.layout.item_myticket,
+                        viewGroup, false ));
         //menginflasi / mereplace list yang sudah ada
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+        //mendapatkan data dari database
+        myViewHolder.xnama_wisata.setText(myTicket.get(i).getNama_wisata());
+        myViewHolder.xlokasi.setText(myTicket.get(i).getLokasi());
+        myViewHolder.xjumlah_tiket.setText(myTicket.get(i).getJumlah_tiket() + " Tickets");
 
+        final String getNamaWisata = myTicket.get(i).getNama_wisata();
+
+        //ketika item di klik akan pindah ke ticket detail
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent gotomyticketdetails = new Intent(context, MyTicketDetailAct.class);
+                gotomyticketdetails.putExtra( "nama_wisata", getNamaWisata);
+                context.startActivity(gotomyticketdetails);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        //item berdasarkan ukuran myticket
+        return myTicket.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{

@@ -5,9 +5,12 @@ import android.content.Intent;
 public class MyTicket {
 
     String nama_wisata, lokasi;
-    Integer jumlah_tiket;
+    String jumlah_tiket;
 
-    public MyTicket(String nama_wisata, String lokasi, Integer jumlah_tiket) {
+    public MyTicket() {
+    }
+
+    public MyTicket(String nama_wisata, String lokasi, String jumlah_tiket) {
         this.nama_wisata = nama_wisata;
         this.lokasi = lokasi;
         this.jumlah_tiket = jumlah_tiket;
@@ -29,11 +32,11 @@ public class MyTicket {
         this.lokasi = lokasi;
     }
 
-    public Integer getJumlah_tiket() {
+    public String getJumlah_tiket() {
         return jumlah_tiket;
     }
 
-    public void setJumlah_tiket(Integer jumlah_tiket) {
+    public void setJumlah_tiket(String jumlah_tiket) {
         this.jumlah_tiket = jumlah_tiket;
     }
 }
