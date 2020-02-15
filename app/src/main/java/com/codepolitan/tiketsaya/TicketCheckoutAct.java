@@ -115,6 +115,14 @@ public class TicketCheckoutAct extends AppCompatActivity {
 
                 value_totalharga = value_hargatiket * value_jumlahtiket;
                 texttotalharga.setText("US$"+value_totalharga.toString()+"");
+
+                if(mybalance<value_totalharga){
+                    btn_pay_now.setEnabled(false);
+                    btn_pay_now.setAlpha((float) 0.5);
+                    textmybalance.setTextColor(Color.parseColor("#203DD1"));
+                    notice_uang.setVisibility(View.VISIBLE);
+                }
+
             }
 
             @Override
@@ -122,8 +130,6 @@ public class TicketCheckoutAct extends AppCompatActivity {
 
             }
         });
-
-
 
         btn_mines.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,7 +163,7 @@ public class TicketCheckoutAct extends AppCompatActivity {
                 }
                 value_totalharga = value_hargatiket * value_jumlahtiket;
                 texttotalharga.setText("US$"+value_totalharga.toString()+"");
-                if(value_totalharga>mybalance){
+                if(value_totalharga<mybalance){
                     btn_pay_now.animate().translationY(250).alpha(0).setDuration(350).start();
                     btn_pay_now.setEnabled(false);
                     textmybalance.setTextColor(Color.parseColor("#D1206B"));

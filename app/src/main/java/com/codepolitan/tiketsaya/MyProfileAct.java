@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class MyProfileAct extends AppCompatActivity {
     LinearLayout item_my_ticket;
     Button btn_edit_profile;
-    Button btn_sign_out;
+    Button btn_sign_out, btn_back_home;
 
     TextView nama_lengkap, bio;
     ImageView photo_profile;
@@ -52,6 +52,7 @@ public class MyProfileAct extends AppCompatActivity {
 
         item_my_ticket = findViewById(R.id.item_my_ticket);
         btn_edit_profile = findViewById(R.id.btn_edit_profile);
+        btn_back_home = findViewById(R.id.btn_back_home);
 
         nama_lengkap = findViewById(R.id.nama_lengkap);
         bio = findViewById(R.id.bio);
@@ -78,6 +79,14 @@ public class MyProfileAct extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        btn_back_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             Intent gotohome = new Intent(MyProfileAct.this, HomeAct.class);
+             startActivity(gotohome);
             }
         });
 
@@ -120,8 +129,15 @@ public class MyProfileAct extends AppCompatActivity {
         btn_sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent signout = new Intent(MyProfileAct.this, SignInAct.class);
-                startActivity(signout);
+                //menghapus isi value username local sharedpreference
+                SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(username_key, null);
+                editor.apply();
+
+                Intent gotosign = new Intent(MyProfileAct.this, SignInAct.class);
+                startActivity(gotosign);
+                finish();
             }
         });
     }

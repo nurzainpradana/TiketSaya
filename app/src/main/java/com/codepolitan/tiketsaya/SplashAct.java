@@ -43,22 +43,24 @@ public class SplashAct extends AppCompatActivity {
         app_logo.startAnimation(app_splash);
         app_tagline.startAnimation(btt);
 
+    }
+
+    public void getUsernameLocal() {
+        SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
+        username_key_new = sharedPreferences.getString(username_key, "");
+
         if(username_key_new.isEmpty()){
-            //setting timer untuk 2 detik (2000 milidetik)
-            //setelah menjalankan animasi splash screen
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     //merubah activity ke activity lain
-                    Intent gogetstarted = new Intent(SplashAct.this, GetStartedAct.class);
-                    startActivity(gogetstarted);
+                    Intent gogethome = new Intent(SplashAct.this, GetStartedAct.class);
+                    startActivity(gogethome);
                     finish();
                 }
             }, 2000); //1000 milis = 1 detik
         }else{
-            //setting timer untuk 2 detik (2000 milidetik)
-            //setelah menjalankan animasi splash screen
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -70,12 +72,6 @@ public class SplashAct extends AppCompatActivity {
                 }
             }, 2000); //1000 milis = 1 detik
         }
-
-    }
-
-    public void getUsernameLocal() {
-        SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
-        username_key_new = sharedPreferences.getString(username_key, "");
     }
 
 }
