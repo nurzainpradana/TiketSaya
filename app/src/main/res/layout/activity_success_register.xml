@@ -51,14 +51,9 @@
 
     <Button
         android:id="@+id/btn_explore"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
+        style="@style/btn_blue_primary"
         android:layout_marginTop="30dp"
-        android:background="@drawable/bg_btn_blue_primary"
-        android:fontFamily="@font/mmedium"
         android:text="@string/explore_label"
-        android:textColor="#fff"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_subtitle" />

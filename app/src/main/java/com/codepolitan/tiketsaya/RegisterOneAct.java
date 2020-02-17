@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class RegisterOneAct extends AppCompatActivity {
     LinearLayout btn_back;
@@ -24,7 +25,9 @@ public class RegisterOneAct extends AppCompatActivity {
     EditText username, password, email_address;
 
     //untuk mendapatkan sebuah reference, untuk digunakan menyimpan sebuah data
-    DatabaseReference reference;
+    DatabaseReference reference, reference_username;
+
+
 
     //untuk menyimpan data lokal
     String USERNAME_KEY = "usernamekey";
@@ -47,8 +50,7 @@ public class RegisterOneAct extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent backtoregisterone = new Intent(RegisterOneAct.this, SignInAct.class);
-                startActivity(backtoregisterone);
+                onBackPressed();
             }
         });
 
@@ -60,33 +62,56 @@ public class RegisterOneAct extends AppCompatActivity {
                 btn_continue.setEnabled(false);
                 btn_continue.setText("Loading ...");
 
-
-                //Menyimpan data kepada local storage (HP)
-                SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                Toast.makeText(RegisterOneAct.this, username.getText().toString(), Toast.LENGTH_SHORT).show();
-                editor.putString(username_key, username.getText().toString());
-                editor.apply();
-
-                Toast.makeText(RegisterOneAct.this, sharedPreferences.getString(username_key,""), Toast.LENGTH_SHORT).show();
-
-                //saat ini kita punya username
-                //tes apakah username udah masuk
-                //Toast.makeText(getApplicationContext(), "username " + username.getText().toString(), Toast.LENGTH_SHORT).show();
-
-                //simpan pada database
-                reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
-                //jadi ini kita akan simpan ke pada firebase, dimana tempatnya users lalu menunju zain berdasarkan usernamenya
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                //mengambil username pada firebase
+                reference_username = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
+                reference_username.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        //memasukkan data pada database
-                        //value didapatkan dari child
-                        dataSnapshot.getRef().child("username").setValue(username.getText().toString());
-                        dataSnapshot.getRef().child("password").setValue(password.getText().toString());
-                        dataSnapshot.getRef().child("email_address").setValue(email_address.getText().toString());
-                        dataSnapshot.getRef().child("user_balance").setValue(800);
+                        if(dataSnapshot.exists()){
+                            Toast.makeText(getApplicationContext(), "Username Sudah Tersedia", Toast.LENGTH_SHORT).show();
+                            //merubah state menjadi loading
+                            btn_continue.setEnabled(true);
+                            btn_continue.setText("CONTINUE");
 
+                        }else{
+                            //Menyimpan data kepada local storage (HP)
+                            SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            Toast.makeText(RegisterOneAct.this, username.getText().toString(), Toast.LENGTH_SHORT).show();
+                            editor.putString(username_key, username.getText().toString());
+                            editor.apply();
+
+                            Toast.makeText(RegisterOneAct.this, sharedPreferences.getString(username_key,""), Toast.LENGTH_SHORT).show();
+
+                            //saat ini kita punya username
+                            //tes apakah username udah masuk
+                            //Toast.makeText(getApplicationContext(), "username " + username.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                            //simpan pada database
+                            reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
+                            //jadi ini kita akan simpan ke pada firebase, dimana tempatnya users lalu menunju zain berdasarkan usernamenya
+                            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    //memasukkan data pada database
+                                    //value didapatkan dari child
+                                    dataSnapshot.getRef().child("username").setValue(username.getText().toString());
+                                    dataSnapshot.getRef().child("password").setValue(password.getText().toString());
+                                    dataSnapshot.getRef().child("email_address").setValue(email_address.getText().toString());
+                                    dataSnapshot.getRef().child("user_balance").setValue(800);
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                            //berpindah activity, letkkan di akhir
+                            Intent gotonextregister = new Intent(RegisterOneAct.this, RegisterTwoAct.class);
+                            startActivity(gotonextregister);
+                        }
                     }
 
                     @Override
@@ -95,9 +120,8 @@ public class RegisterOneAct extends AppCompatActivity {
                     }
                 });
 
-                //berpindah activity, letkkan di akhir
-                Intent gotonextregister = new Intent(RegisterOneAct.this, RegisterTwoAct.class);
-                startActivity(gotonextregister);
+
+
             }
         });
     }

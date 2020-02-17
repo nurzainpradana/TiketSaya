@@ -241,13 +241,8 @@
 
             <Button
                 android:id="@+id/btn_buy_ticket"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@drawable/bg_btn_blue_primary"
-                android:fontFamily="@font/mmedium"
                 android:text="BUY TICKET"
-                android:textColor="#fff"
-                android:textSize="20sp" />
+                style="@style/btn_blue_primary" />
         </LinearLayout>
     </LinearLayout>
 

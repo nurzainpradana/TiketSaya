@@ -223,13 +223,8 @@ more better and ever"
 
             <Button
                 android:id="@+id/btn_continue"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@drawable/bg_btn_blue_primary"
-                android:fontFamily="@font/mmedium"
                 android:text="CONTINUE"
-                android:textColor="#fff"
-                android:textSize="20sp" />
+                style="@style/btn_blue_primary"/>
         </LinearLayout>
     </LinearLayout>
 
