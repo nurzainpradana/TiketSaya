@@ -45,8 +45,6 @@ public class RegisterOneAct extends AppCompatActivity {
         password=findViewById(R.id.password);
         email_address=findViewById(R.id.email_address);
 
-
-
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,7 +62,7 @@ public class RegisterOneAct extends AppCompatActivity {
 
                 //mengambil username pada firebase
                 reference_username = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
-                reference_username.addListenerForSingleValueEvent(new ValueEventListener() {
+                 reference_username.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()){

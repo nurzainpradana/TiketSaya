@@ -74,59 +74,58 @@ public class RegisterTwoAct extends AppCompatActivity {
         btn_continue.setOnClickListener(new View.OnClickListener() {
 
 
-                                            @Override
-                                            public void onClick(View v) {
-                                                //ubah state menjadi loading
-                                                btn_continue.setEnabled(false);
-                                                btn_continue.setText("Loading...");
+            @Override
+            public void onClick(View v) {
+                //ubah state menjadi loading
+                btn_continue.setEnabled(false);
+                btn_continue.setText("Loading...");
 
-                                                //menyimpan kepada firebase
-                                                //menggunakan username baru
-                                                //di register 1 disimpan di local
-                                                //kemudian ambil untuk key
-                                                reference = FirebaseDatabase.getInstance().getReference()
-                                                        .child("Users").child(username_key_new);
-                                                storage = FirebaseStorage.getInstance().getReference()
-                                                        .child("Photousers").child(username_key_new);
+                //menyimpan kepada firebase
+                //menggunakan username baru
+                //di register 1 disimpan di local
+                //kemudian ambil untuk key
+                reference = FirebaseDatabase.getInstance().getReference()
+                        .child("Users").child(username_key_new);
+                storage = FirebaseStorage.getInstance().getReference()
+                        .child("Photousers").child(username_key_new);
 
-                                                //validasi untuk file apakah ada ?
-                                                if (photo_location != null) {
-                                                    final StorageReference storageReference1 = storage.child(System.currentTimeMillis() + "." +
-                                                            getFileExtension(photo_location));
-                                                    //ketika kondisi sukses
-                                                    storageReference1.putFile(photo_location).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                                        @Override
-                                                        public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
-                                                            //setelah berhasil meletakkan file
-                                                            //dapatkan sebuah url
-                                                            storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                                @Override
-                                                                public void onSuccess(Uri uri) {
-                                                                    //melakukan upload
-                                                                    //yang diupload
-                                                                    //gambar dan url
+                //validasi untuk file apakah ada ?
+                if (photo_location != null) {
+                    final StorageReference storageReference1 = storage.child(System.currentTimeMillis() + "." +
+                            getFileExtension(photo_location));
+                    //ketika kondisi sukses
+                    storageReference1.putFile(photo_location).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
+                            //setelah berhasil meletakkan file
+                            //dapatkan sebuah url
+                            storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    //melakukan upload
+                                    //yang diupload
+                                    //gambar dan url
 
-                                                                    String uri_photo = uri.toString();
-                                                                    //ambil reference
-                                                                    //ketika yang di upload url, berdasarkan username
-                                                                    reference.getRef().child("url_photo_profile").setValue(uri_photo);
-                                                                    reference.getRef().child("nama_lengkap").setValue(nama_lengkap.getText().toString());
-                                                                    reference.getRef().child("bio").setValue(bio.getText().toString());
-                                                                }
-                                                            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                                                @Override
-                                                                public void onComplete(@NonNull Task<Uri> task) {
-                                                                    Intent gotosuccess = new Intent(RegisterTwoAct.this, SuccessRegisterAct.class);
-                                                                    startActivity(gotosuccess);
-                                                                }
-                                                            });
-                                                        }
+                                    String uri_photo = uri.toString();
+                                    //ambil reference
+                                    //ketika yang di upload url, berdasarkan username
+                                    reference.getRef().child("url_photo_profile").setValue(uri_photo);
+                                    reference.getRef().child("nama_lengkap").setValue(nama_lengkap.getText().toString());
+                                    reference.getRef().child("bio").setValue(bio.getText().toString());
+                                }
+                            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    Intent gotosuccess = new Intent(RegisterTwoAct.this, SuccessRegisterAct.class);
+                                    startActivity(gotosuccess);
+                                }
+                            });
+                        }
 
-                                                    });
-                                                }
-                                            }
-                                        });
-
+                    });
+                }
+            }
+        });
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,16 +136,14 @@ public class RegisterTwoAct extends AppCompatActivity {
 
     //mendapatkan alamat file
     //akan digunakan ketika menyimpan foto ke firebase
-    String getFileExtension(Uri uri){
+    String getFileExtension(Uri uri) {
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-
-
     //fuction yang dibutuhkan jika ingin menambahkan foto
-    public void findPhoto(){
+    public void findPhoto() {
         Intent pic = new Intent();
         //karena ingin mengupload gambar menggunakan /image
         pic.setType("image/*");
@@ -160,22 +157,21 @@ public class RegisterTwoAct extends AppCompatActivity {
 
         //validasi photonya sudah ada atau belum
         //memastikan bahwa datanya tidak null
-        if(requestCode == photo_max && resultCode == RESULT_OK && data != null && data.getData() != null)
-        {
+        if (requestCode == photo_max && resultCode == RESULT_OK && data != null && data.getData() != null) {
             photo_location = data.getData();
             //membutuhkan library picasso
 
             //Picasso mengisi sebuah url pada sebuah imageview secara realtime
-             //load image dari photo location ke pic photo register user
+            //load image dari photo location ke pic photo register user
             Picasso.with(this).load(photo_location).centerCrop().fit().into(pic_photo_register_user);
         }
     }
 
     //mendapatkan reference
-    public void getUsernameLocal(){
+    public void getUsernameLocal() {
         //hanya perlu mendapatkan username key
         SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
-        username_key_new = sharedPreferences.getString(username_key,"");
+        username_key_new = sharedPreferences.getString(username_key, "");
     }
 }
 
